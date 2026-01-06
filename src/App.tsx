@@ -79,7 +79,7 @@ function App() {
             <div class="md:col-span-2">
               <button
                 type="submit"
-                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-indigo-200 transition-all active:scale-95"
+                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-indigo-200 transition-all active:scale-95 cursor-pointer"
               >
                 Create Link
               </button>
@@ -118,7 +118,7 @@ function App() {
                           {item.original_url}
                         </div>
                         <div class="text-xs text-slate-400 mt-0.5">
-                          {item.description || "no description)"}
+                          {item.description || "no description :)"}
                         </div>
                       </td>
                       <td class="px-6 py-5 text-center">
