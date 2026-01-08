@@ -113,11 +113,11 @@ function Login() {
           <button
             type="submit"
             disabled={loading()}
-            class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-indigo-200 transition-all active:scale-95 mt-2 flex justify-center items-center"
+            class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-indigo-200 transition-all active:scale-95 mt-2 flex justify-center items-center cursor-pointer"
           >
             {loading() ? (
               <div class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-            ) : "Login"}
+            ) : "Enter"}
           </button>
         </form>
 

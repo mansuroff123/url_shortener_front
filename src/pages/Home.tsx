@@ -13,7 +13,7 @@ function Home() {
   onMount(() => {
     const savedUser = localStorage.getItem("username");
     if (!savedUser) {
-      navigate("/login"); // Login qilmagan bo'lsa haydaymiz
+      navigate("/login");
     } else {
       setUsername(savedUser);
     }
@@ -23,11 +23,10 @@ function Home() {
     e.preventDefault();
     if (!url()) return;
     
-    // Sizning api xizmatingizga url va desc yuboramiz
     await shortenUrl(url(), desc()); 
     setUrl("");
     setDesc("");
-    refetch(); // Jadvalni yangilash
+    refetch();
   };
 
   const logout = () => {
@@ -39,14 +38,13 @@ function Home() {
     const fullUrl = `http://localhost:5000/${code}`;
     navigator.clipboard.writeText(fullUrl);
     setShowToast(true);
-    setTimeout(() => setShowToast(false), 2000); // 0.5s juda tez edi, 2s qildim
+    setTimeout(() => setShowToast(false), 2000);
   };
 
   return (
     <div class="min-h-screen bg-slate-50 text-slate-900 font-sans p-4 md:p-10">
       <div class="max-w-6xl mx-auto">
         
-        {/* HEADER: Sizning dizayn + User info */}
         <header class="mb-10 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
           <div>
             <h1 class="text-3xl font-black tracking-tight text-indigo-600">
@@ -64,14 +62,13 @@ function Home() {
             </div>
             <button 
               onClick={logout}
-              class="bg-red-50 text-red-600 px-4 py-2 rounded-lg font-bold hover:bg-red-100 transition-colors border border-red-100"
+              class="bg-red-50 text-red-600 px-4 py-2 rounded-lg font-bold hover:bg-red-100 transition-colors border border-red-100 cursor-pointer"
             >
               Logout
             </button>
           </div>
         </header>
 
-        {/* FORM: Sizning original dizayningiz */}
         <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 p-6 md:p-8 mb-8 border border-slate-100">
           <form onSubmit={handleSubmit} class="grid grid-cols-1 md:grid-cols-12 gap-5 items-end">
             <div class="md:col-span-5">
@@ -96,14 +93,13 @@ function Home() {
               />
             </div>
             <div class="md:col-span-2">
-              <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all active:scale-95">
+              <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all active:scale-95 cursor-pointer">
                 Create Link
               </button>
             </div>
           </form>
         </div>
 
-        {/* TABLE: Sizning original dizayningiz */}
         <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
@@ -137,10 +133,18 @@ function Home() {
                       <td class="px-6 py-5 text-center text-xs text-slate-500">
                         {new Date(item.created_at).toLocaleDateString()}
                       </td>
-                      <td class="px-6 py-5 text-right pr-6">
+                      <td class="px-6 py-5 text-right pr-6 flex gap-2 justify-end">
+                        
+                        <button
+                          onClick={() => navigate(`/stats/${item.code}`)}
+                          class="bg-indigo-50 hover:bg-indigo-100 text-indigo-600 px-4 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer"
+                        >
+                          Stats
+                        </button>
+                        
                         <button
                           onClick={() => copyToClipboard(item.code)}
-                          class="bg-slate-100 hover:bg-indigo-600 hover:text-white text-slate-600 px-4 py-2 rounded-lg text-xs font-bold transition-all"
+                          class="bg-slate-100 hover:bg-indigo-600 hover:text-white text-slate-600 px-4 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer"
                         >
                           Copy
                         </button>
@@ -161,7 +165,6 @@ function Home() {
         </div>
       </div>
 
-      {/* TOAST: Sizning dizayningiz */}
       <div
         class={`fixed top-10 left-1/2 -translate-x-1/2 flex items-center bg-indigo-600 text-white px-6 py-3 rounded-2xl shadow-2xl transition-all duration-300 transform ${
           showToast() ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0 pointer-events-none"
