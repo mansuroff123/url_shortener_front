@@ -69,7 +69,7 @@ function Login() {
 
       <div class="max-w-md w-full bg-white rounded-3xl shadow-xl border border-slate-100 p-8 transition-all">
         <div class="text-center mb-8">
-          <h1 class="text-3xl font-black text-indigo-600">Welcome Back</h1>
+          <h1 class="text-3xl font-black text-indigo-600">Welcome!</h1>
           <p class="text-slate-500 mt-2">Enter your credentials to access</p>
         </div>
 
@@ -90,7 +90,7 @@ function Login() {
                 ? "border-red-500 focus:ring-red-100" 
                 : "border-slate-200 focus:ring-indigo-100 focus:border-indigo-500"
               }`}
-              placeholder="admin"
+              placeholder="username"
               required
             />
           </div>

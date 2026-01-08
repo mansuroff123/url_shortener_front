@@ -8,7 +8,7 @@ const fetchAdminStats = async () => {
       "Authorization": `Bearer ${token}` 
     }
   });
-  if (!response.ok) throw new Error("Avtorizatsiyadan o'tilmagan");
+  if (!response.ok) throw new Error("User is not authorized");
   return response.json();
 };
 
@@ -48,6 +48,12 @@ function Admin() {
             <p class="text-slate-400 text-xs uppercase font-bold tracking-wider">Total Clicks</p>
             <p class="text-4xl font-black mt-2 text-emerald-500">
               {stats()?.reduce((acc: number, item: any) => acc + item.clicks, 0) || 0}
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <p class="text-slate-400 text-xs uppercase font-bold tracking-wider">Total Users</p>
+            <p class="text-4xl font-black mt-2 text-emerald-500">
+              {stats()?.reduce((acc: number, item: any) => acc + item.users, 0) || 0}
             </p>
           </div>
         </div>

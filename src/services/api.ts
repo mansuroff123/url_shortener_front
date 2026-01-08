@@ -1,16 +1,21 @@
-const API_URL = 'http://localhost:5000';
+// src/services/api.ts (namuna)
+const getAuthHeaders = () => ({
+  "Content-Type": "application/json",
+  "Authorization": `Bearer ${localStorage.getItem("token")}`
+});
 
 export const fetchUrls = async () => {
-    const res = await fetch (`${API_URL}/urls`);
-    return res.json()
+  const res = await fetch("http://localhost:5000/api/urls/my-urls", {
+    headers: getAuthHeaders()
+  });
+  return res.json();
 };
 
-
-export const shortenUrl = async (original_url: string, description: string) => {
-    const res = await fetch(`${API_URL}/shorten`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ original_url, description })
-    });
-    return res.json()
-}
+export const shortenUrl = async (url: string, description: string) => {
+  const res = await fetch("http://localhost:5000/api/urls/shorten", {
+    method: "POST",
+    headers: getAuthHeaders(),
+    body: JSON.stringify({ original_url: url, description })
+  });
+  return res.json();
+};
