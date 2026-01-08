@@ -25,7 +25,7 @@ function SignUp() {
 
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
+      const response = await fetch("http://192.168.0.158:5000/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: username(), password: password() }),
@@ -71,7 +71,7 @@ function SignUp() {
                 ? "border-red-500 focus:ring-red-100" 
                 : "border-slate-200 focus:ring-indigo-100 focus:border-indigo-500"
               }`}
-              placeholder="user123"
+              placeholder="Create username..."
               required
             />
           </div>
@@ -86,7 +86,7 @@ function SignUp() {
                 ? "border-red-500 focus:ring-red-100" 
                 : "border-slate-200 focus:ring-indigo-100 focus:border-indigo-500"
               }`}
-              placeholder="minimum 8 characters"
+              placeholder="Minimum 8 characters..."
               required
             />
           </div>
@@ -101,7 +101,7 @@ function SignUp() {
                 ? "border-red-500 focus:ring-red-100" 
                 : "border-slate-200 focus:ring-indigo-100 focus:border-indigo-500"
               }`}
-              placeholder="••••••••"
+              placeholder="Re-write your password..."
               required
             />
           </div>

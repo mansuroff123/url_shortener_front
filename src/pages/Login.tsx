@@ -1,6 +1,9 @@
 import { createSignal, onMount, Show } from "solid-js";
 import { useNavigate, useSearchParams, A } from "@solidjs/router";
 
+// BASE_URL from .env
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
+
 function Login() {
   const [searchParams] = useSearchParams();
   const [showSuccess, setShowSuccess] = createSignal(false);
@@ -23,7 +26,8 @@ function Login() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      // Localhost/IP replaced with dynamic BASE_URL
+      const response = await fetch(`${BASE_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: username(), password: password() }),
@@ -55,7 +59,7 @@ function Login() {
     <div class="min-h-screen flex items-center justify-center bg-slate-50 p-4 relative">
       {/* Toast */}
       <Show when={showSuccess()}>
-        <div class="fixed top-5 left-1/2 -translate-x-1/2 z-50 animate-bounce-subtle">
+        <div class="fixed top-5 left-1/2 -translate-x-1/2 z-50">
           <div class="bg-emerald-500 text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-emerald-400">
             <div class="bg-white/20 rounded-full p-1">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -90,7 +94,7 @@ function Login() {
                 ? "border-red-500 focus:ring-red-100" 
                 : "border-slate-200 focus:ring-indigo-100 focus:border-indigo-500"
               }`}
-              placeholder="username"
+              placeholder="Write your username..."
               required
             />
           </div>
@@ -105,7 +109,7 @@ function Login() {
                 ? "border-red-500 focus:ring-red-100" 
                 : "border-slate-200 focus:ring-indigo-100 focus:border-indigo-500"
               }`}
-              placeholder="••••••••"
+              placeholder="Write your password..."
               required
             />
           </div>
