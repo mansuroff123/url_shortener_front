@@ -6,7 +6,6 @@ const getAuthHeaders = () => ({
 });
 
 export const fetchUrls = async () => {
-  // Endi localhost o'rniga BASE_URL ishlatamiz
   const res = await fetch(`${BASE_URL}/urls/my-urls`, {
     headers: getAuthHeaders()
   });
@@ -27,6 +26,6 @@ export const fetchLinkStats = async (code: string) => {
     headers: getAuthHeaders()
   });
   
-  if (!res.ok) throw new Error("Statistikani yuklab bo'lmadi");
+  if (!res.ok) throw new Error("Failed to load statistics");
   return res.json();
 };

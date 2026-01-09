@@ -1,7 +1,6 @@
 import { createSignal, onMount, Show } from "solid-js";
 import { useNavigate, useSearchParams, A } from "@solidjs/router";
 
-// BASE_URL from .env
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
 
 function Login() {
@@ -57,7 +56,6 @@ function Login() {
 
   return (
     <div class="min-h-screen flex items-center justify-center bg-slate-50 p-4 relative">
-      {/* Toast */}
       <Show when={showSuccess()}>
         <div class="fixed top-5 left-1/2 -translate-x-1/2 z-50">
           <div class="bg-emerald-500 text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-emerald-400">
